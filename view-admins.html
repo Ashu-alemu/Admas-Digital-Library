@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Admins - Admas Digital Library</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar admin-nav">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo" class="logo-img" width="40" height="40">
+                <h1>Manage Administrators</h1>
+            </div>
+            <div class="admin-info">
+                <span id="currentAdmin">Loading...</span>
+                <a href="admin-dashboard.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-users-cog"></i> Admin Management</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#"><i class="fas fa-list"></i> All Admins</a></li>
+                <li><a href="add-admin.html"><i class="fas fa-user-plus"></i> Add New Admin</a></li>
+                <li><a href="#"><i class="fas fa-history"></i> Activity Logs</a></li>
+                <li><a href="#"><i class="fas fa-shield-alt"></i> Security Settings</a></li>
+            </ul>
+        </aside>
+
+        <main class="admin-content">
+            <div class="admin-header-bar">
+                <h2><i class="fas fa-user-shield"></i> System Administrators</h2>
+                <div class="header-actions">
+                    <button class="btn-refresh" onclick="loadAdmins()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                    <button class="btn-add" onclick="window.location.href='add-admin.html'">
+                        <i class="fas fa-plus"></i> Add New
+                    </button>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="searchAdmins" placeholder="Search admins by name, email, or username...">
+                <button onclick="searchAdmins()"><i class="fas fa-search"></i> Search</button>
+            </div>
+
+            <div class="admins-table-container">
+                <table class="admins-table" id="adminsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Last Login</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminsTableBody">
+                        <!-- Admins will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-info">
+                <p id="tableCount">Loading administrators...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Admin Modal (hidden by default) -->
+    <div class="modal" id="editAdminModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Administrator</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="editAdminForm">
+                <!-- Form will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/view-admins.js"></script>
+</body>
+</html>

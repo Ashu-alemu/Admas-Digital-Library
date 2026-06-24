@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Admas University Library</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* About Page Specific Stylees */
+        .about-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-content {
+            padding: 60px 0;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+        
+        .mission-card, .vision-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .mission-card h3, .vision-card h3 {
+            color: #3498db;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .team-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 30px 20px;
+            transition: transform 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 5px solid #ecf0f1;
+            position: relative;
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .member-info h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .member-description {
+            color: #7f8c8d;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .contact-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Admas University Logo" class="logo-img"
+                onerror="this.onerror=null; this.src='images/logo.png';"
+                 width="40" 
+                 height="40">
+                <h1>Admas Digital Library</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Our Library</h1>
+            <p>Transforming education through digital access to knowledge since 2024</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <h2 class="section-title">Welcome to Admas Digital Library</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">
+                The Admas University Digital Library is a state-of-the-art web-based library management system 
+                designed to revolutionize how students and faculty access educational resources. Our mission is 
+                to provide 24/7 access to thousands of books, journals, and research materials through a 
+                user-friendly digital platform.
+            </p>
+            
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <p>To provide seamless digital access to educational resources, fostering a culture of 
+                    learning and research excellence at Admas University through innovative technology 
+                    and user-centered design.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>To become Ethiopia's leading digital academic library, setting standards for 
+                    accessibility, innovation, and academic support in higher education institutions 
+                    across the continent.</p>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Project Overview</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                This Library Management System is a Software Engineering project developed by students 
+                of Admas University. The system addresses the limitations of traditional paper-based 
+                library systems by automating all library operations, from book search and borrowing 
+                to member management and reporting.
+            </p>
+        </div>
+    </section>
+
+   <!-- Team Section -->
+<section class="team-section">
+    <div class="container">
+        <h2 class="team-title">Meet Our Development Team</h2>
+        <p style="text-align: center; margin-bottom: 50px; color: #7f8c8d;">
+            This project was developed by dedicated Software Engineering students
+        </p>
+        
+        <div class="team-grid">
+            <!-- Team Member 1: Bontu (Avatar) -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <div class="avatar-initials" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                         width: 100%; height: 100%; display: flex; align-items: center; 
+                         justify-content: center; color: white; font-size: 3rem; 
+                         font-weight: bold; border-radius: 50%;">
+                        BW
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Bontu Wakagari</h3>
+                    <p class="member-role">Frontend Developer & UI Designer</p>
+                    <p class="member-description">
+                        Designed the user interface and implemented the responsive frontend 
+                        using HTML5, CSS3, and JavaScript. Created intuitive user experience 
+                        and modern design aesthetics.
+                    </p>
+                    <div class="member-skills">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">UI/UX Design</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Member 2: Hana (Avatar) -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <div class="avatar-initials" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); 
+                         width: 100%; height: 100%; display: flex; align-items: center; 
+                         justify-content: center; color: white; font-size: 3rem; 
+                         font-weight: bold; border-radius: 50%;">
+                        HD
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Hana Daba</h3>
+                    <p class="member-role">Backend & JavaScript Developer</p>
+                    <p class="member-description">
+                        Implemented business logic, form validation, and all JavaScript 
+                        functionality. Ensured system reliability and data integrity 
+                        throughout the application.
+                    </p>
+                    <div class="member-skills">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Form Validation</span>
+                        <span class="skill-tag">LocalStorage</span>
+                        <span class="skill-tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+            
+<!-- Team Member 3: Ashenafi -->
+<div class="team-member" onclick="openAshenafiModal()" style="cursor: pointer;">
+    <div class="member-photo">
+        <img src="images/team/ashenafi.jpg" alt="Ashenafi Lakew"
+             onerror="this.style.display='none'; 
+                      this.parentElement.innerHTML='<div class=\avatar-initials avatar-ashenafi\>AL</div>';">
+    </div>
+    <div class="member-info">
+        <h3 style="color: #4facfe;">Ashenafi Lakew <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i></h3>
+        <p class="member-role">Project Architect & Documentation</p>
+        <p class="member-description">
+            Designed system architecture, managed project structure, and created 
+            comprehensive documentation. Ensured adherence to software engineering 
+            principles and project requirements.
+        </p>
+        <div class="member-skills">
+            <span class="skill-tag">Full-stack developer</span>
+            <span class="skill-tag">System Design</span>
+            <span class="skill-tag">Documentation</span>
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Quality Assurance</span>
+        </div>
+        <p style="margin-top: 10px; font-size: 0.9em; color: #3498db;">
+            <i class="fas fa-mouse-pointer"></i> Click for more details
+        </p>
+    </div>
+</div>
+        
+        <!-- Add this CSS for skills tags -->
+        <style>
+            .member-skills {
+                margin-top: 15px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .skill-tag {
+                background: #ecf0f1;
+                color: #2c3e50;
+                padding: 5px 12px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 500;
+            }
+        </style>
+    </div>
+</section>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-university"></i> Admas University</h3>
+                    <p>Digital Library Management System</p>
+                    <p>Software Engineering Project</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-users"></i> Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="login.html">Login</a></p>
+                    <p><a href="register.html">Register</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> Contact</h3>
+                    <p>library@admas.edu.et</p>
+                    <p>Addis Ababa, Ethiopia</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Admas University. Library Management System Project.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Ashenafi Details Modal -->
+<div id="ashenafiModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        
+        <div class="modal-header">
+            <div class="modal-photo">
+                <img src="images/team/ashenafi.jpg" alt="Ashenafi Lakew"
+                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiM0ZmFjZmUiLz48dGV4dCB4PSI1MCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPkFMPC90ZXh0Pjwvc3ZnPgo='">
+            </div>
+            <div class="modal-header-info">
+                <h2>Ashenafi Lakew</h2>
+                <p class="modal-role">Project Architect & Documentation Specialist</p>
+                <p style="margin: 5px 0; opacity: 0.8;">
+                    <i class="fas fa-graduation-cap"></i> Software Engineering Student
+                </p>
+                <p style="margin: 5px 0; opacity: 0.8;">
+                    <i class="fas fa-university"></i> Admas University
+                </p>
+            </div>
+        </div>
+        
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3><i class="fas fa-user-graduate"></i> About Me</h3>
+                <p>I am a passionate Software Engineering student at Admas University with strong interests in system architecture, project management, and technical documentation. I believe in creating efficient, scalable, and well-documented software solutions.</p>
+            </div>
+            
+            <div class="modal-section">
+                <h3><i class="fas fa-tasks"></i> Role in This Project</h3>
+                <ul style="padding-left: 20px; line-height: 1.8;">
+                    <li>Designed the overall system architecture</li>
+                    <li>Created comprehensive project documentation</li>
+                    <li>Ensured adherence to software engineering principles</li>
+                    <li>Managed project timeline and deliverables</li>
+                    <li>Quality assurance and testing coordination</li>
+                </ul>
+            </div>
+            
+            <div class="modal-section">
+                <h3><i class="fas fa-code"></i> Technical Skills</h3>
+                <div class="skills-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                    <span style="background: #e3f2fd; color: #1976d2; padding: 8px 15px; border-radius: 20px;">System Design</span>
+                    <span style="background: #f3e5f5; color: #7b1fa2; padding: 8px 15px; border-radius: 20px;">Documentation</span>
+                    <span style="background: #e8f5e8; color: #388e3c; padding: 8px 15px; border-radius: 20px;">Project Management</span>
+                    <span style="background: #fff3e0; color: #f57c00; padding: 8px 15px; border-radius: 20px;">HTML/CSS</span>
+                    <span style="background: #fce4ec; color: #c2185b; padding: 8px 15px; border-radius: 20px;">JavaScript</span>
+                    <span style="background: #e0f7fa; color: #0097a7; padding: 8px 15px; border-radius: 20px;">Database Design</span>
+                </div>
+            </div>
+            
+            <div class="modal-section">
+                <h3><i class="fas fa-info-circle"></i> Contact & Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong><i class="fas fa-envelope"></i> Email</strong>
+                        <span>ashenafilakew721@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <strong><i class="fas fa-book"></i> Course</strong>
+                        <span>Software Engineering</span>
+                    </div>
+                    <div class="info-item">
+                        <strong><i class="fas fa-calendar"></i> Project Date</strong>
+                        <span>December 2024</span>
+                    </div>
+                    <div class="info-item">
+                        <strong><i class="fas fa-map-marker"></i> University</strong>
+                        <span>Admas University, Ethiopia</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-section">
+                <h3><i class="fas fa-quote-left"></i> Personal Statement</h3>
+                <blockquote style="border-left: 4px solid #4facfe; padding-left: 20px; margin: 0; font-style: italic; color: #555;">
+                    "I believe that well-designed software begins with thorough planning and documentation. 
+                    Through this Library Management System project, I aimed to demonstrate how proper 
+                    architecture and documentation can create robust, maintainable applications that 
+                    solve real-world problems effectively."
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal JavaScript -->
+<script>
+
+// Open Ashenafi's modal
+function openAshenafiModal() {
+    document.getElementById('ashenafiModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+}
+
+// Close modal
+function closeModal() {
+    document.getElementById('ashenafiModal').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+}
+
+// Close modal when clicking outside content
+document.getElementById('ashenafiModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+// Close with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+</script>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

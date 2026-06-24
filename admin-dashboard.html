@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Admas Digital Library</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="navbar admin-nav">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo" class="logo-img" width="40" height="40">
+                <h1>Admin Dashboard</h1>
+            </div>
+            <div class="admin-info">
+                <span id="adminNameDisplay">Administrator</span>
+                <button class="btn-logout" onclick="logoutAdmin()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-cog"></i> Admin Panel</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> Manage Books</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Manage Users</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#"><i class="fas fa-history"></i> Activity Log</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-book"></i>
+                    <h3>1,245</h3>
+                    <p>Total Books</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3>8,523</h3>
+                    <p>Registered Users</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>127</h3>
+                    <p>Pending Requests</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>89%</h3>
+                    <p>System Uptime</p>
+                </div>
+            </div>
+
+            <div class="admin-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <button class="action-btn"><i class="fas fa-plus"></i> Add New Book</button>
+                    <button class="action-btn"><i class="fas fa-user-plus"></i> Add User</button>
+                    <button class="action-btn"><i class="fas fa-file-export"></i> Generate Report</button>
+                    <button class="action-btn"><i class="fas fa-cog"></i> System Settings</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- In admin-dashboard.html, add this in the action-buttons section -->
+<div class="action-buttons">
+    <button class="action-btn" onclick="window.location.href='add-admin.html'">
+        <i class="fas fa-user-plus"></i> Add New Admin
+    </button>
+    <!-- ... other buttons ... -->
+     <button class="action-btn" onclick="window.location.href='add-book.html'">
+    <i class="fas fa-plus"></i> Add New Book
+</button>
+</div>
+
+    <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

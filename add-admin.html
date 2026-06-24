@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Admin - Admas Digital Library</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar admin-nav">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo" class="logo-img" width="40" height="40">
+                <h1>Add New Administrator</h1>
+            </div>
+            <div class="admin-info">
+                <span id="currentAdmin">System Admin</span>
+                <a href="admin-dashboard.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add Admin Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-header admin-header">
+                    <h1><i class="fas fa-user-plus"></i> Add New Administrator</h1>
+                    <p>Create a new admin account with specific permissions</p>
+                </div>
+                
+                <div class="auth-content">
+                    <form id="addAdminForm">
+                        <!-- Admin Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Basic Information</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="adminFullName"><i class="fas fa-user-circle"></i> Full Name</label>
+                                    <input type="text" id="adminFullName" placeholder="Enter full name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="adminEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                                    <input type="email" id="adminEmail" placeholder="admin@admas.edu.et" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="adminUsername"><i class="fas fa-user-tag"></i> Username</label>
+                                    <input type="text" id="adminUsername" placeholder="Choose username" required>
+                                    <small class="form-text">This will be used for login</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="adminEmployeeId"><i class="fas fa-id-card"></i> Employee ID</label>
+                                    <input type="text" id="adminEmployeeId" placeholder="EMP-001" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Security Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-lock"></i> Security Information</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="adminPassword"><i class="fas fa-key"></i> Password</label>
+                                    <div class="password-input">
+                                        <input type="password" id="adminPassword" placeholder="Create strong password" required>
+                                        <button type="button" class="toggle-password" id="togglePassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="password-strength">
+                                        <div class="strength-bar">
+                                            <div class="strength-fill"></div>
+                                        </div>
+                                        <div class="strength-text">
+                                            <span>Password Strength:</span>
+                                            <span class="strength-value">Very Weak</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirmPassword"><i class="fas fa-key"></i> Confirm Password</label>
+                                    <div class="password-input">
+                                        <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                                        <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="adminSecretQuestion"><i class="fas fa-question-circle"></i> Security Question</label>
+                                <select id="adminSecretQuestion" required>
+                                    <option value="">Select a security question</option>
+                                    <option value="pet">What was your first pet's name?</option>
+                                    <option value="school">What elementary school did you attend?</option>
+                                    <option value="city">In what city were you born?</option>
+                                    <option value="mother">What is your mother's maiden name?</option>
+                                    <option value="car">What was your first car?</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="adminSecretAnswer"><i class="fas fa-key"></i> Security Answer</label>
+                                <input type="text" id="adminSecretAnswer" placeholder="Your answer" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Admin Permissions -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-user-shield"></i> Admin Permissions</h3>
+                            
+                            <div class="permissions-grid">
+                                <div class="permission-card">
+                                    <label class="permission-label">
+                                        <input type="checkbox" name="permissions" value="manage_books" checked>
+                                        <div class="permission-content">
+                                            <i class="fas fa-book"></i>
+                                            <span>Manage Books</span>
+                                            <small>Add, edit, delete books</small>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="permission-card">
+                                    <label class="permission-label">
+                                        <input type="checkbox" name="permissions" value="manage_users" checked>
+                                        <div class="permission-content">
+                                            <i class="fas fa-users"></i>
+                                            <span>Manage Users</span>
+                                            <small>Add, edit, delete users</small>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="permission-card">
+                                    <label class="permission-label">
+                                        <input type="checkbox" name="permissions" value="manage_admins">
+                                        <div class="permission-content">
+                                            <i class="fas fa-user-shield"></i>
+                                            <span>Manage Admins</span>
+                                            <small>Add/remove administrators</small>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="permission-card">
+                                    <label class="permission-label">
+                                        <input type="checkbox" name="permissions" value="view_reports">
+                                        <div class="permission-content">
+                                            <i class="fas fa-chart-bar"></i>
+                                            <span>View Reports</span>
+                                            <small>Access system reports</small>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="permission-card">
+                                    <label class="permission-label">
+                                        <input type="checkbox" name="permissions" value="system_settings">
+                                        <div class="permission-content">
+                                            <i class="fas fa-cog"></i>
+                                            <span>System Settings</span>
+                                            <small>Modify system settings</small>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="permission-card">
+                                    <label class="permission-label">
+                                        <input type="checkbox" name="permissions" value="backup_restore">
+                                        <div class="permission-content">
+                                            <i class="fas fa-database"></i>
+                                            <span>Backup/Restore</span>
+                                            <small>Database operations</small>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="adminRole"><i class="fas fa-user-tie"></i> Admin Role</label>
+                                <select id="adminRole" required>
+                                    <option value="">Select a role</option>
+                                    <option value="super_admin">Super Administrator</option>
+                                    <option value="library_admin">Library Administrator</option>
+                                    <option value="content_admin">Content Administrator</option>
+                                    <option value="user_admin">User Administrator</option>
+                                    <option value="report_admin">Report Administrator</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms and Conditions -->
+                        <div class="form-section">
+                            <div class="terms">
+                                <label class="terms-label">
+                                    <input type="checkbox" id="agreeTerms" required>
+                                    <span>I agree that I am authorized to create administrator accounts and understand the security implications.</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Alert Messages -->
+                        <div class="alert-message" id="addAdminAlert" style="display: none;"></div>
+                        
+                        <!-- Submit Button -->
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel" onclick="window.location.href='admin-dashboard.html'">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-user-plus"></i> Create Admin Account
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Admas University. Restricted Access - Administrator Panel</p>
+                <p class="security-info"><i class="fas fa-shield-alt"></i> All actions are logged</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/add-admin.js"></script>
+</body>
+</html>

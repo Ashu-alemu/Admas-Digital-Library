@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Admas University Library</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-bg"></body>
+<body>
+   <div class="logo">
+    <!-- Test with absolute path -->
+    <img src="/images/logo.png" alt="Logo" 
+         onerror="this.src='images/logo.png';"
+         class="logo-img"
+         style="height: 50px; width: auto;">
+    <h1>Admas Digital Library</h1>
+</div>
+    <nav class="navbar">
+        <div class="container">
+                <i class="fas fa-book"></i>
+                <h1>Admas Digital Library</h1>
+            </div>
+<ul class="nav-links">
+    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+    <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+</ul>
+        </div>
+    </nav>
+
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h1><i class="fas fa-user-plus"></i> Create Account</h1>
+                    <p>Join Admas University Digital Library</p>
+                </div>
+                
+                <div class="auth-content">
+                    <form id="registerForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName"><i class="fas fa-user"></i> Last Name</label>
+                                <input type="text" id="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> University Email</label>
+                            <input type="email" id="email" placeholder="name@admas.edu.et" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="idNumber"><i class="fas fa-id-card"></i> Student/Staff ID</label>
+                            <input type="text" id="idNumber" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="userType"><i class="fas fa-user-tag"></i> I am a</label>
+                                <select id="userType" required>
+                                    <option value="">Select role</option>
+                                    <option value="STUDENT">Student</option>
+                                    <option value="TEACHER">Teacher/Staff</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                                <input type="tel" id="phone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                                <div class="password-input">
+                                    <input type="password" id="password" required>
+                                    <button type="button" class="toggle-password">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="password-strength">
+                                    <div class="strength-bar"></div>
+                                    <span class="strength-text">Password strength: Weak</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
+                                <input type="password" id="confirmPassword" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group terms">
+                            <label>
+                                <input type="checkbox" required>
+                                <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-register">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                    
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="login.html">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/auth.js"></script>
+    <!-- Add this BEFORE other script tags -->
+<script src="js/common.js"></script>
+<script src="js/script.js"></script> <!-- or js/auth.js as needed -->
+</body>
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Books - Admas Digital Library</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Manage Books Specific Styles */
+        .manage-books-container {
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .books-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .books-header h1 {
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-action {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-add {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-add:hover {
+            background: #219653;
+            transform: translateY(-2px);
+        }
+
+        .btn-export {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-export:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-refresh {
+            background: #f39c12;
+            color: white;
+        }
+
+        .btn-refresh:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        /* Search and Filters */
+        .search-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .search-btn {
+            padding: 12px 30px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-btn:hover {
+            background: #34495e;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+        .filter-select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* Books Table */
+        .books-table-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .books-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .books-table thead {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .books-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .books-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .books-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .book-info-cell {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .book-cover-small {
+            width: 50px;
+            height: 65px;
+            border-radius: 5px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .book-cover-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .book-author {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .status-available {
+            background: rgba(46, 204, 113, 0.1);
+            color: #27ae60;
+        }
+
+        .status-unavailable {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+
+        .status-reserved {
+            background: rgba(241, 196, 15, 0.1);
+            color: #f39c12;
+        }
+
+        /* Category Badges */
+        .category-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn-small {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .btn-view {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+
+        .btn-view:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-edit {
+            background: rgba(46, 204, 113, 0.1);
+            color: #27ae60;
+        }
+
+        .btn-edit:hover {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-delete {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+
+        .btn-delete:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover {
+            border-color: #3498db;
+            color: #3498db;
+        }
+
+        .page-btn.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .page-btn:disabled {
+            background: #f8f9fa;
+            color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        /* Stats Cards */
+        .books-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-card:nth-child(1) i { color: #3498db; }
+        .stat-card:nth-child(2) i { color: #2ecc71; }
+        .stat-card:nth-child(3) i { color: #f39c12; }
+        .stat-card:nth-child(4) i { color: #e74c3c; }
+
+        .stat-card h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* No Data Message */
+        .no-data {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .no-data i {
+            font-size: 4rem;
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+
+        .no-data h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .no-data p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .books-header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .books-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .action-buttons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="navbar admin-nav">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo" class="logo-img" width="40" height="40">
+                <h1>Manage Books</h1>
+            </div>
+            <div class="admin-info">
+                <a href="admin-dashboard.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="manage-books-container">
+        <!-- Stats Cards -->
+        <div class="books-stats" id="booksStats">
+            <!-- Stats will be loaded by JavaScript -->
+        </div>
+
+        <!-- Header -->
+        <div class="books-header">
+            <h1><i class="fas fa-book"></i> Book Management</h1>
+            <div class="header-actions">
+                <button class="btn-action btn-add" onclick="window.location.href='add-book.html'">
+                    <i class="fas fa-plus"></i> Add Book
+                </button>
+                <button class="btn-action btn-export" onclick="exportBooks()">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+                <button class="btn-action btn-refresh" onclick="loadBooks()">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" 
+                       placeholder="Search by title, author, ISBN...">
+                <button class="search-btn" onclick="searchBooks()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label for="categoryFilter">Category</label>
+                    <select class="filter-select" id="categoryFilter" onchange="filterBooks()">
+                        <option value="">All Categories</option>
+                        <option value="computer-science">Computer Science</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="business">Business</option>
+                        <option value="science">Science</option>
+                        <option value="literature">Literature</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="statusFilter">Status</label>
+                    <select class="filter-select" id="statusFilter" onchange="filterBooks()">
+                        <option value="">All Status</option>
+                        <option value="available">Available</option>
+                        <option value="unavailable">Unavailable</option>
+                        <option value="reserved">Reserved</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="yearFilter">Year</label>
+                    <select class="filter-select" id="yearFilter" onchange="filterBooks()">
+                        <option value="">All Years</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortFilter">Sort By</label>
+                    <select class="filter-select" id="sortFilter" onchange="sortBooks()">
+                        <option value="title">Title A-Z</option>
+                        <option value="title-desc">Title Z-A</option>
+                        <option value="author">Author A-Z</option>
+                        <option value="year">Year (Newest)</option>
+                        <option value="year-desc">Year (Oldest)</option>
+                        <option value="added">Recently Added</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Books Table -->
+        <div class="books-table-container">
+            <table class="books-table" id="booksTable">
+                <thead>
+                    <tr>
+                        <th>Book Information</th>
+                        <th>Category</th>
+                        <th>ISBN</th>
+                        <th>Year</th>
+                        <th>Copies</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="booksTableBody">
+                    <!-- Books will be loaded by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+            <!-- Pagination will be loaded by JavaScript -->
+        </div>
+
+        <!-- No Data Message -->
+        <div class="no-data" id="noDataMessage" style="display: none;">
+            <i class="fas fa-book-open"></i>
+            <h3>No Books Found</h3>
+            <p>No books match your search criteria. Try different filters or add new books.</p>
+            <button class="btn-action btn-add" onclick="window.location.href='add-book.html'">
+                <i class="fas fa-plus"></i> Add First Book
+            </button>
+        </div>
+    </div>
+
+    <!-- Edit Book Modal -->
+    <div class="modal" id="editBookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Book</h2>
+                <button class="modal-close" onclick="closeModal('editBookModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="editBookForm">
+                <!-- Edit form will be loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- View Book Modal -->
+    <div class="modal" id="viewBookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-eye"></i> Book Details</h2>
+                <button class="modal-close" onclick="closeModal('viewBookModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="viewBookContent">
+                <!-- Book details will be loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/manage-books.js"></script>
+</body>
+</html>

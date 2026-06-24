@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Book - Admas Digital Library</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Add Book Page Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Header */
+        .add-book-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-left h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .header-left i {
+            font-size: 2rem;
+            color: #3498db;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-header {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-back {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-3px);
+        }
+
+        .btn-import {
+            background: #f39c12;
+            color: white;
+        }
+
+        .btn-import:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .add-book-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Form Container */
+        .form-container {
+            padding: 40px;
+        }
+
+        /* Tabs */
+        .form-tabs {
+            display: flex;
+            border-bottom: 2px solid #ecf0f1;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #7f8c8d;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tab:hover {
+            color: #3498db;
+        }
+
+        .tab.active {
+            color: #3498db;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #3498db;
+            border-radius: 3px 3px 0 0;
+        }
+
+        /* Form Content */
+        .form-content {
+            min-height: 500px;
+        }
+
+        .form-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        label .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f9f9f9;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            border-color: #3498db;
+            background: white;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+            padding-right: 40px;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+
+        .input-with-icon .form-control {
+            padding-left: 45px;
+        }
+
+        .form-hint {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.85rem;
+            color: #95a5a6;
+        }
+
+        .form-error {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-error.show {
+            display: block;
+        }
+
+        /* Cover Image Upload */
+        .cover-upload-container {
+            text-align: center;
+            padding: 30px;
+            border: 3px dashed #bdc3c7;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cover-upload-container:hover {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+
+        .cover-preview {
+            width: 180px;
+            height: 240px;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .cover-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        #coverUpload {
+            display: none;
+        }
+
+        /* Categories Selection */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .category-option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .category-option:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .category-option.selected {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+            color: #27ae60;
+        }
+
+        .category-option i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Form Navigation */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-nav {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+
+        .btn-prev {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-prev:hover {
+            background: #7f8c8d;
+            transform: translateX(-3px);
+        }
+
+        .btn-next {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-next:hover {
+            background: #2980b9;
+            transform: translateX(3px);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+            color: white;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            min-width: 180px;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #219653 0%, #27ae60 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-submit:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Book Preview */
+        .book-preview {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 2px dashed #3498db;
+        }
+
+        .preview-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preview-card {
+            display: flex;
+            gap: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .preview-cover {
+            width: 150px;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .preview-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-details {
+            flex: 1;
+        }
+
+        .preview-details h4 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .preview-details .author {
+            color: #3498db;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .preview-info {
+            margin: 15px 0;
+        }
+
+        .info-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-item i {
+            color: #3498db;
+            width: 20px;
+        }
+
+        /* CSV Import Section */
+        .csv-import-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px dashed #3498db;
+        }
+
+        .csv-header {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .import-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #bdc3c7;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .file-upload-area:hover {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+
+        .csv-preview {
+            display: none;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .csv-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .csv-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .csv-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .csv-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            padding: 60px 40px;
+            display: none;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: #27ae60;
+            margin-bottom: 20px;
+            animation: bounce 1s ease;
+        }
+
+        .success-message h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .success-message p {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .success-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-success {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-view {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-view:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-add-another {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border: 2px solid #3498db;
+        }
+
+        .btn-add-another:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .preview-card {
+                flex-direction: column;
+            }
+            
+            .preview-cover {
+                width: 100%;
+                height: 250px;
+            }
+            
+            .form-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-nav, .btn-submit {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .import-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .file-upload-area {
+                min-width: auto;
+            }
+            
+            .success-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .header-left h1 {
+                font-size: 1.4rem;
+            }
+            
+            .add-book-container {
+                margin: 10px auto;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="add-book-container">
+        <!-- Header -->
+        <div class="add-book-header">
+            <div class="header-left">
+                <i class="fas fa-book-medical"></i>
+                <h1>Add New Book to Library</h1>
+            </div>
+            <div class="header-actions">
+                <a href="admin-dashboard.html" class="btn-header btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-container">
+            <!-- Tabs -->
+            <div class="form-tabs">
+                <button class="tab active" onclick="switchTab('single')" data-tab="single">
+                    <i class="fas fa-plus-circle"></i> Single Book
+                </button>
+                <button class="tab" onclick="switchTab('bulk')" data-tab="bulk">
+                    <i class="fas fa-file-import"></i> Bulk Import
+                </button>
+            </div>
+
+            <!-- Form Content -->
+            <div class="form-content">
+                <!-- Single Book Form -->
+                <div class="form-section active" id="singleForm">
+                    <h3 class="section-title">Book Information</h3>
+                    
+                    <div class="form-grid">
+                        <!-- Basic Information -->
+                        <div class="form-group full-width">
+                            <label for="bookTitle">Book Title <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-heading"></i>
+                                <input type="text" id="bookTitle" class="form-control" 
+                                       placeholder="Enter book title (e.g., Software Engineering)" required>
+                            </div>
+                            <div class="form-error" id="titleError">Please enter a book title (3-200 characters)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookAuthor">Author <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user-pen"></i>
+                                <input type="text" id="bookAuthor" class="form-control" 
+                                       placeholder="Author name (e.g., Ian Sommerville)" required>
+                            </div>
+                            <div class="form-error" id="authorError">Please enter author name</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookISBN">ISBN</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-barcode"></i>
+                                <input type="text" id="bookISBN" class="form-control" 
+                                       placeholder="ISBN number (optional)">
+                            </div>
+                            <div class="form-hint">Format: 978-3-16-148410-0 (13 digits)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookYear">Publication Year <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-calendar"></i>
+                                <input type="number" id="bookYear" class="form-control" 
+                                       min="1500" max="2024" value="2024" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookPublisher">Publisher</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-building"></i>
+                                <input type="text" id="bookPublisher" class="form-control" 
+                                       placeholder="Publisher name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookPages">Number of Pages</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-file"></i>
+                                <input type="number" id="bookPages" class="form-control" 
+                                       min="1" placeholder="e.g., 450">
+                            </div>
+                        </div>
+
+                        <!-- Category Selection -->
+                        <div class="form-group full-width">
+                            <label>Select Category <span class="required">*</span></label>
+                            <div class="categories-grid">
+                                <div class="category-option" data-category="computer-science">
+                                    <i class="fas fa-laptop-code"></i>
+                                    <span>Computer Science</span>
+                                </div>
+                                <div class="category-option" data-category="engineering">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Engineering</span>
+                                </div>
+                                <div class="category-option" data-category="mathematics">
+                                    <i class="fas fa-calculator"></i>
+                                    <span>Mathematics</span>
+                                </div>
+                                <div class="category-option" data-category="business">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Business</span>
+                                </div>
+                                <div class="category-option" data-category="science">
+                                    <i class="fas fa-flask"></i>
+                                    <span>Science</span>
+                                </div>
+                                <div class="category-option" data-category="literature">
+                                    <i class="fas fa-book-open"></i>
+                                    <span>Literature</span>
+                                </div>
+                                <div class="category-option" data-category="history">
+                                    <i class="fas fa-landmark"></i>
+                                    <span>History</span>
+                                </div>
+                                <div class="category-option" data-category="art">
+                                    <i class="fas fa-palette"></i>
+                                    <span>Art & Design</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="bookCategory" value="">
+                            <div class="form-error" id="categoryError">Please select a category</div>
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="form-group">
+                            <label for="bookCopies">Number of Copies <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-copy"></i>
+                                <input type="number" id="bookCopies" class="form-control" 
+                                       min="1" value="1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookLocation">Shelf Location</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" id="bookLocation" class="form-control" 
+                                       placeholder="e.g., Shelf A-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookLanguage">Language</label>
+                            <select id="bookLanguage" class="form-control">
+                                <option value="english">English</option>
+                                <option value="amharic">Amharic</option>
+                                <option value="french">French</option>
+                                <option value="spanish">Spanish</option>
+                                <option value="arabic">Arabic</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookEdition">Edition</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-layer-group"></i>
+                                <input type="text" id="bookEdition" class="form-control" 
+                                       placeholder="e.g., 3rd Edition">
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group full-width">
+                            <label for="bookDescription">Description <span class="required">*</span></label>
+                            <textarea id="bookDescription" class="form-control" 
+                                      placeholder="Enter book description..." rows="5" required></textarea>
+                            <div class="form-hint">Provide a brief summary of the book (50-1000 characters)</div>
+                        </div>
+
+                        <!-- Cover Image -->
+                        <div class="form-group full-width">
+                            <label>Book Cover Image</label>
+                            <div class="cover-upload-container" id="coverUploadArea">
+                                <div class="cover-preview" id="coverPreview">
+                                    <i class="fas fa-book"></i>
+                                    <span style="font-size: 0.9rem; margin-top: 10px;">No cover selected</span>
+                                </div>
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <p>Click to upload or drag & drop</p>
+                                <p class="form-hint">Recommended: 500x700px, JPG/PNG format, Max 5MB</p>
+                                <input type="file" id="coverUpload" accept="image/*">
+                            </div>
+                        </div>
+
+                        <!-- Keywords -->
+                        <div class="form-group full-width">
+                            <label for="bookKeywords">Keywords/Tags</label>
+                            <input type="text" id="bookKeywords" class="form-control" 
+                                   placeholder="e.g., programming, java, software, development">
+                            <div class="form-hint">Separate keywords with commas</div>
+                        </div>
+                    </div>
+
+                    <!-- Book Preview -->
+                    <div class="book-preview">
+                        <h4 class="preview-title"><i class="fas fa-eye"></i> Book Preview</h4>
+                        <div class="preview-card" id="bookPreview">
+                            <div class="preview-cover">
+                                <div id="previewCoverPlaceholder">
+                                    <i class="fas fa-book" style="font-size: 3rem; color: #666;"></i>
+                                </div>
+                                <img id="previewCoverImage" style="display: none;">
+                            </div>
+                            <div class="preview-details">
+                                <h4 id="previewTitle">Book Title</h4>
+                                <div class="author" id="previewAuthor">Author Name</div>
+                                <div class="preview-info">
+                                    <div class="info-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Year: <span id="previewYear">2024</span></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-tag"></i>
+                                        <span>Category: <span id="previewCategory">Computer Science</span></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-copy"></i>
+                                        <span>Copies Available: <span id="previewCopies">1</span></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-file"></i>
+                                        <span>Pages: <span id="previewPages">--</span></span>
+                                    </div>
+                                </div>
+                                <p id="previewDescription" style="color: #555; line-height: 1.5;">Book description will appear here...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-navigation">
+                        <div></div>
+                        <button class="btn-submit" id="submitBookBtn" onclick="submitSingleBook()">
+                            <i class="fas fa-plus-circle"></i> Add Book to Library
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bulk Import Form -->
+                <div class="form-section" id="bulkForm">
+                    <h3 class="section-title">Bulk Import from CSV</h3>
+                    
+                    <div class="csv-import-section">
+                        <h4 class="csv-header">
+                            <i class="fas fa-file-import"></i> Import Multiple Books from CSV File
+                        </h4>
+                        <p style="color: #7f8c8d; margin-bottom: 20px;">
+                            Upload a CSV file with multiple books at once. Download the template to see the required format.
+                        </p>
+                        
+                        <div class="import-actions">
+                            <button class="btn-header" onclick="downloadCSVTemplate()" 
+                                    style="background: #f39c12; color: white;">
+                                <i class="fas fa-download"></i> Download Template
+                            </button>
+                            
+                            <div style="position: relative; flex: 1;">
+                                <input type="file" id="csvFileInput" accept=".csv,.txt" style="display: none;" 
+                                       onchange="handleCSVUpload(event)">
+                                <div class="file-upload-area" onclick="document.getElementById('csvFileInput').click()">
+                                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #3498db; margin-bottom: 10px;"></i>
+                                    <p style="color: #2c3e50; margin-bottom: 5px;">Click to select CSV file</p>
+                                    <p style="color: #95a5a6; font-size: 0.9rem;">Or drag & drop your file here</p>
+                                </div>
+                            </div>
+                            
+                            <button class="btn-header" onclick="openCSVPreview()" 
+                                    style="background: #9b59b6; color: white;">
+                                <i class="fas fa-eye"></i> Preview Sample
+                            </button>
+                        </div>
+                        
+                        <!-- CSV Preview -->
+                        <div class="csv-preview" id="csvPreview">
+                            <h4 style="color: #2c3e50; margin: 20px 0 15px;">CSV Preview (First 5 rows)</h4>
+                            <table class="csv-table" id="csvPreviewTable">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Category</th>
+                                        <th>Year</th>
+                                        <th>ISBN</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="csvPreviewBody">
+                                    <!-- Preview rows will be added here -->
+                                </tbody>
+                            </table>
+                            <div style="margin-top: 15px; text-align: right;">
+                                <button onclick="importFromCSV()" style="padding: 10px 25px; background: #27ae60; color: white; 
+                                        border: none; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-check"></i> Import All Books
+                                </button>
+                                <span id="importCount" style="margin-left: 15px; color: #7f8c8d;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bulk Import Instructions -->
+                    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                        <h4 style="color: #2c3e50; margin-bottom: 15px;">
+                            <i class="fas fa-info-circle"></i> CSV Format Instructions
+                        </h4>
+                        <ul style="color: #555; line-height: 1.6; padding-left: 20px;">
+                            <li>CSV file must have headers: Title, Author, ISBN, Year, Publisher, Pages, Category, Description, Copies, Language, Location, Edition</li>
+                            <li>Required fields: Title, Author, Year, Category, Copies</li>
+                            <li>Category must be one of: computer-science, engineering, mathematics, business, science, literature, history, art</li>
+                            <li>Year should be between 1500 and current year</li>
+                            <li>Copies must be a number greater than 0</li>
+                            <li>Download the template above for correct format</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Book Added Successfully!</h2>
+                    <p>The book has been added to the Admas Digital Library database.</p>
+                    <p id="addedBookInfo">You can now view it in the library catalog.</p>
+                    <div class="success-actions">
+                        <a href="index.html" class="btn-success btn-view">
+                            <i class="fas fa-home"></i> View on Homepage
+                        </a>
+                        <a href="javascript:void(0)" class="btn-success btn-add-another" onclick="addAnotherBook()">
+                            <i class="fas fa-plus"></i> Add Another Book
+                        </a>
+                        <a href="manage-books.html" class="btn-success btn-view" style="background: #2c3e50;">
+                            <i class="fas fa-book"></i> Manage Books
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/add-book.js"></script>
+</body>
+</html>

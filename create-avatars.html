@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Team Avatars</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        body { padding: 40px; font-family: Arial; }
+        .avatar-container { display: flex; gap: 30px; margin: 30px 0; }
+        .avatar { width: 150px; height: 150px; border-radius: 50%; 
+                  display: flex; align-items: center; justify-content: center; 
+                  color: white; font-size: 48px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Click on avatars to download as images</h2>
+    
+    <div class="avatar-container">
+        <div class="avatar" id="bontu" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+            BW
+        </div>
+        
+        <div class="avatar" id="hana" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+            HD
+        </div>
+        
+        <div class="avatar" id="ashenafi" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+            AL
+        </div>
+    </div>
+    
+    <p>After downloading, save to: images/team/bontu.jpg, hana.jpg, ashenafi.jpg</p>
+    
+    <script>
+        document.querySelectorAll('.avatar').forEach(avatar => {
+            avatar.addEventListener('click', function() {
+                html2canvas(this).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = this.id + '.jpg';
+                    link.href = canvas.toDataURL('image/jpeg');
+                    link.click();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

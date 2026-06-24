@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admas University Digital Library</title>
+      
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            
+            <img src="https://via.placeholder.com/40x40/2c3e50/ffffff?text=AU" 
+                 alt="Admas University Logo" 
+                 class="logo-img"
+                 onerror="this.onerror=null; this.src='images/logo.png';"
+                 width="40" 
+                 height="40">
+            <h1>Admas Digital Library</h1>
+        </div>
+        <ul class="nav-links">
+           <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+           <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+           <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+           <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Welcome to Admas University Digital Library</h2>
+                <p>Access thousands of books, journals, and resources anytime, anywhere</p>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Search books by title, author, or keyword..." id="searchInput">
+                    <button onclick="searchBooks()"><i class="fas fa-search"></i> Search</button>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-book-open"></i>
+                        <h3>15,000+</h3>
+                        <p>Books Available</p>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <h3>8,500+</h3>
+                        <p>Active Members</p>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-laptop"></i>
+                        <h3>24/7</h3>
+                        <p>Online Access</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books -->
+    <section class="featured" id="search">
+        <div class="container">
+            <h2 class="section-title">Featured Books</h2>
+            
+            <div class="books-grid">
+                <!-- Book Card 1 -->
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=Software+Engineering" 
+                         alt="Software Engineering">
+                    <div class="book-info">
+                        <h3>Software Engineering</h3>
+                        <p class="author">By Ian Sommerville</p>
+                        <p class="category">Computer Science</p>
+                        <span class="availability available">Available</span>
+                    </div>
+                </div>
+                
+                <!-- Book Card 2 -->
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/300x200/2c3e50/ffffff?text=Database+Systems" 
+                         alt="Database Systems">
+                    <div class="book-info">
+                        <h3>Database Systems</h3>
+                        <p class="author">By Abraham Silberschatz</p>
+                        <p class="category">Computer Science</p>
+                        <span class="availability limited">2 Left</span>
+                    </div>
+                </div>
+                
+                <!-- Book Card 3 -->
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/300x200/1abc9c/ffffff?text=Digital+Library" 
+                         alt="Digital Library">
+                    <div class="book-info">
+                        <h3>Introduction to Digital Libraries</h3>
+                        <p class="author">By Michael Lesk</p>
+                        <p class="category">Library Science</p>
+                        <span class="availability available">Available</span>
+                    </div>
+                </div>
+                
+                <!-- Book Card 4 -->
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=Java+Programming" 
+                         alt="Java Programming">
+                    <div class="book-info">
+                        <h3>Java: The Complete Reference</h3>
+                        <p class="author">By Herbert Schildt</p>
+                        <p class="category">Programming</p>
+                        <span class="availability unavailable">Checked Out</span>
+                    </div>
+                </div>
+                
+                <!-- Book Card 5 - Software Engineering Chapter 2 -->
+                <div class="book-card">
+                    <img src="/home/ashu/Pictures/book1" 
+                         alt="Software Engineering Chapter 2">
+                    <div class="book-info">
+                        <h3>Software Engineering - Chapter 2</h3>
+                        <p class="author">Computer Science Department</p>
+                        <p class="category">Course Material</p>
+                        <span class="file-format ppt">PPT</span>
+                        <span class="availability available">Free Download</span>
+                    </div>
+                </div>
+                                
+                <div class="book-card">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExIWFRUXGBUWFhgWGBcYFxUVFRcWFhUVFhcYHiggGBolGxcVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGi0lHyYtLS8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKgBLAMBEQACEQEDEQH/xAAcAAAABwEBAAAAAAAAAAAAAAAAAQIDBAUGBwj/xABKEAACAQIDBQUEBgYGCAcAAAABAgMAEQQSIQUGMUFREyJhcYEHMpGhFEJSYrHBIzNyktHwQ4KTotPhFRc0U1Syw9IWJFVjc4PU/8QAGwEAAwEBAQEBAAAAAAAAAAAAAAECAwQFBgf/xAA6EQACAgECBAMGBQMEAQUBAAAAAQIRAwQhEjFBUQUTYXGBkaHR8CIyscHhFELxFSMzUpJTYnKCokP/2gAMAwEAAhEDEQA/AOVFq1NhDSjoaRLvoxGYGi0KpCDl6Gji2opRn0f38BJy9DUcSRrFT6sMMnQ/z60cUV0G45O5Mw0o4Um1ZlKEubJDIDxFGxnbQBGBQFsDWAuadhuytku7X5cKTkjTkhJFqdgWEDXUfCkQ+YHHEUrGiqxS/KpTNZK0RL1RlYdIYuCFnYKoLMTYAcSaaV7Imc1CLlJ0kbPZW4JYAzy5T9lACR5sdPgPWtHjceZ42XxdXWNe9/QsJvZtEw/RzurffCsPlYiuaWXhFDxObf4ooxO3dhTYR8ky2vqrDVHA45T+R1FxV45xmtj08WaOVXEro4yxAHE1ZqW2Hw4QePM1LZaRFxT97XgKRryIbyXqkjGU7EUyAUACgAUACmmAKNgJOFflVpiZKqhBXoABoAbkmAo5ARZJSaUpdh0N1lYy4LVoXxAMd+dFEeZTFLFSorzLB2dTRopA7DxFLhGsvoAYcdaOEbytdBXY0ONsXmvlQvtSPGpewlFSAcUeQpcQ/KXcaa7cfGpch7R5BqoHx/KlzIbGZBVWUmS8JHYX62ppESY44pMEQsUulQaxZX5BWlicESIsKp5n5VRm1RstydlKgabiWJVb8lGh+Jv8K7dPjqPGfOeMalvIsK5Ld+3/AAaY7XhSQRM9nte2VjpYniBa9lOl76Vll5nDj0+SUONLb3DkO9WEsrGawYsoJSQC65c17roBmXU6a+BrgyY5PodcdJmTrh+a+pabe2MmMw7wsBci6H7Lgd1h+B8Ca8/zHjnxfE10+R45pnHMLgwlzrfhry6ivYZ9DS6C5elKioorMZYmtIxVBJ9CJUtUYhUgBQAKABQAKABQAam1UmBYI1xWhJ2z2ZQwY/DfQsVgIFQIZY5I7iRrFFzsdWDnMvezagWIAqZJrcyhlhOTxrdrmc5f2e40pnzRWEayEXkvZo2lF+5ZRlU942S/dDE6VPEbUBvZfjQ5UmIKPrlmymyyu1rKTdViJItpnT7QpAjHTwFXZLg5SVuL2Nja4uAbeYq1GwEiI0+FBZYXpMtB5T0ooakhSqb1NMfEhYWk0yuJBBT0pUyuJLqGqGlwsPMiIKkVLTRalGQkeNNNdSvYOIo/Cp2Ikxw/91Z2Z/wIPH4fhTQhtxVgTohoPIVRAchoY0RcUtx86hmkSrvVF2OwSWNCIZ0bdRwcOngWB/eJ/AivUwu8K9/6nx3ikWtXL1r9EPx7Jz40ytmCoImS1srOokBvz0zeHGsJ7W/vqa486hpuBc3d+zYhw7vSSjDRyK6IDjO0KkXCyOGQHjowHKuaU1FW+3f1O1aiMXJxp/lr3I6Lh7ADoB8hXhZ25Nvuc0dzimImDO7DgWYj1JNe1HZJH0qjSSZCeT4/hTNEV2JYZj8K0jJUZze5GqWzMFIAUACgAUACgAUACgByOUjhVKVAaLGbxt9GijglkjbIYpgpK5ksmhI4qSvDw1q3+KKSOLBgnjzZJPk+XzExbaAIID69lm4C+S6MAb3N4yUFydGI0Bp0h+Vkf93fq+vL4DuJ221gY5JBISWMgdkcG7AKcvHuaaG1m68B12Lx45xlcpe7d/qUspJJJJJJJJJuSTqSSeJoRuJtVcwHr1DLFrKaVsPLiATmlbLWKIGmNS2zRY0ASG/zpWx8CYoTNQm31DyoC1jY8TSaC4x5CpItLCpaEpbkOOfLof5saktriHmlv8/nScdyOESTQkLhBVCosU4DyqjMROe7fpSfIqPMtNmbuTzxhwoRSLhnuLg81HEj5Vvi0s8ivkcmfX4cMnFu32Q3itx3UaTKT0IIHx1rq/06VbSRhHxeDe8WZzG4GSFssi26HiD5GuPLhnidSR6GLPDKrgy93U2wIWyv7jWufstwzeXI+QrTBl4NnyPO8T0TzxUofmXzXb6HRsK4YAggg6gjUEeBp5T5xRcXTW5YwV5uU6Imd3y3mVI3gibM7Aq5B0jU8Rf7R4W5fCssWC5ccuR7Gh0rk1OXLp6/wc6ikshPW/8ACu7oey1cqLzZe6E7LncCINrZ75rfsjh62rqxaSc93sefn8TwwdR39nL4kXHblSLcrIjHoQV+etdH+nyrZpmC8Uxye8WvmZbF4V42yupVuh/EHnXFkxyg6kqZ3QnGceKLtDNQUCgCVhoARc1SQhb4YU6QEWRLGpaoYikAKAJcWHFr1rSRI4IwKBirU0IApAE9MBIoAeAoZYvMOdGxHDK9mFdelTsaJZO4AV6GlsWlk7kiOIHlUtoVzXUeVAOVAXJ9RVxQKhJI6Uh0ysxyAG9qKSL3qw45RbhTpMKY6GFFITTDQ3NqRNMfeYBgPED16VPUdVE0u42xxiZ3aQAxRAEg8GdvdU9V0YnyHWt9Pj45b8ked4lqXhxJR/NL9OpusVjojwlj5cHXgQSOfQE+QNetGS7nzyxz7P4FLjMXH/vE/eHTN16EHyreM49zRQl2ZQbVjSVShIPHgRcEcx4i4+NaThjzRcJG+Gc8UlNGLWyEq3EEg6dK+bljcJOL6H0SyKSUl1JuD2u0X6uV08Be3qOFFMzyYseT88UyRiN45nFmxEhHQXW/nlAvU8C7Ew0+GDuMV9+0gvMMnd5mw/Cho64PqzeezvYSvfEOLiM5IgeGcAFn8bXAHiT0FdOlx2+J9Dx/FdU4pYo9d37O31NbjjYEnQa3Jr1InhxM/icQhNg6kkZgAQSVPBgOnjW8JK6s24ZJW0ZveDAiVCLd4XKnoenkaNRp1mx116HTpszxTvp1MEa+bPoAwKALRFsAK0EBqAIOKOtKQIYqBgoAmYR9LVot0IdpgHQAVAANAhNMY6KGNB2qS0ERSKTCRrGpZoWCnSoMhVWgCpMBNMoYxUdx/PpSHFlbEbaGiLGn0H1YVY2ORNZgaTIY92wRrHm3yI/yrNBNWkzpnsuYGDEDn2ov5FFt+DV3aPk/afPeM35kPZ+7MZsHZ0v0lUdTl766g/0MbxL8c96vBCXGr5fRNfudWoyx8pyXP6tMh7Jwsj5gykDsJSLg8cqwgefcv608MJStNf2v6fsXnnGKtP8AuX62ObEjfO7OCLqW1B4yMlx6BK6dDGXmNy7X8a+hlq5R8ul3r4f5K/aMY7RzY6nr0C+Fc2rV55ffQ6dN/wAURloV00Px/wAq5+E2sBgW9rHnz6X8KXCOx3AwjMTY6DiTf8qTiVFnXNwWBwCW4h5QfPtGI+RWuvT/AJD57xS/6l+xfoRt8MaYotELByyMQCcoZHs1gDzAHrW+SXDEy0mNTnz5b/MxWz4ck8QMRzdlGHzKe6RAozq1tBpkKnnSwx4csVXRX6fh538j0c0uLFLfa3+vJ/qixxletE85HO8Ue+9uGZvxNfLZq8yVd2fSY/yK+yDwi3YeGtQiyytViENQBXTnWplzBDdSMFADkDWNXFiZOFUIFAwUAEaAE0AOXtVUNCs1Q0WgjSKG6RaZLwsnKoaFJEqqMxJoGJNBQLUhFVjUs1/jSG+49s/ByTHLEjOeduA8ydB605ZIwVydG2LFkzOscWy9XczFkXyJ5Zxf+Hzrn/rcPf5HW/CtSldL4lbvDhZICA6FGN/eHEDoeB9K1hOE1cXZ5+SGTF+Caoudx9vNhcQQ6nsZAFcge7Yko+nEC5Hkx8K6cE+CXoebr9P5+OlzW6/dHT8S4YXBBB1BGoIPAg160GfN006ZSYyuiJaM9tSbKCeJ5DqaueVY42zqwYnklSM0Y2LG45k+6OOuvCvGdt2z21sqQBEbHu+XdHXyo4QsIxta9tdfqjw8POjhCxSiwItqQOAqHEuMqNRuFtoYbNDKcqSNdSdAslguvQMANfAda0xS4XTPP8Q0zyx8yPNfNfwbXGV3xPERR4yt4miMlvJtARKQD320UdPvGs9VqVhhS/M+X1O7Sad5ZW+S+6MOBXzx7ppti7p4lxmyBAbWznKfhqR6isJavFDr8D0cfhOqyK+Gvbt8uZOxm6mKQZuzDjn2ZzH902J9AaIa3DJ1de0nL4Xqcavhv2O/oZ2Y2vXYeeVpNZDCoAFAAoAnwtcVqSLoAFAwjQAVAChfpVNjQdjUFoIigpAIpFIJWsQalj5lkjXFFmdANFoBNFoYdK0AcOzzO6xjS51P2QNSbeV/lWeTIoRcjp0mnlqMqxLr8l1++50XZeDSFAka2UfM9T1NeNkm5u2fb48EMEFCCpItYaxZnMXj9mx4iMxSrmU/FTyZTyI60QySxy4onFqMUMsXGS2OP7Y2QcPM0LMP0el7HvKdVYacwR5G9fSYMiywU11PjtRieLI4PoWGz9sTQIRHJpmJCkXXXXgRpx5V2QnKHJnHlwYsu81v36kuTeCdxYmME9FP53FdK1EzlWhwrv8AEgSKXPebMdbk38PDwNZu5O2dMYqKqKD7G/MaWp8IWL7LW9xz/n50+ELE9jx1GtHCFiGhNrX68/L+FS4jsalivz0HjUuI7JuD23iIRlWS6agK1mUeV9Ry0BtTjklHkY5NLiyO5Lf0GsZvFiXFs0a35qBf+8TRLVZapbEx0OFdG/a/8FJtS51JJNzcnU1xztu2d0UkqRqNxdiqFGIcXY37O/1QNM3mTf0868rV5nfAvefWeCeHxUP6ia3fL0Xf2/t7Tdw15zPckToazZzSMh7SN3Q8LYqMWdLdoB9dOGY/eHXpfoK79Dqmn5UuT5eh4Hieki15sVuufqcqr1jwQUACgAUASMI2tq0i9hMl0xAtQMKgArikAuOWraGgGQ1NFIZZzRRSDD0mikFLJU0USsFNfSoaJZKNSITSAF6ALrdJgZm6hPkSL/lXNq/yL2nveAJefN9eH90W29mXs4hIbRmUZ9badnIR4cQLX5gVjov+R+xnoeOV5MU+XEr9lMqo5Yu2uZJTmw9s17Sxj6NmvlBs6ldfB665RlwtcK5399jwvMx+Ypccncavqtvfa/c1fs8dPo7Kn1ZGBIYlGNlOZL+6DcXXkb15/iCfEm1zO7wxx8txi+T93u7eqKb2j4cHEoQtyYlBsQODvbj/ADpXf4TbxP2/sjy/F/8AmXs/dmbTC8rG1+Nx4fwr2EjyGPphvunh1FaJEsfTD8TY/LnerSJscXD6cDVqJNijh/A0+ELCbD68DRwhY20HHQ/CpaGhh4NDx+FQ4jsjywacD8P86zcSkyNNB+18OvrWbRaZH2in51lJFWdF2EAIIrcOzT/lFfO5vzy9rP0nSV/TY6/6x/QzLtGWxYeR1kYzhiNR2YljVM4ve2oH7JavSiv9uHCk+R8lllHzsynJptyXfbpf3yHcPPFmwTa905Qgc2F5ymeB/rd4e79jTlRwSbkqW/3v9UZeZjrG7e17X684v9n0Ok7UVTh5g3umKS/lkN68LHfHGu6Pd1FeXK+zPPdfTHx4VAAoAFIBSNY3qovcGWVWIQ8oFAEWTEE8Km+wxGUmnTEWQQCruwQtADUMoMRilZQbIKQ7GZgtUikyJEwVr0NBsWytcXrFiGZsUq+NA6IM2KZuGgp0IlbvbR+jzq5903V/2Tz9CAfSs82LjhR2+Har+lzqb5cn7H92dWgyuo4MpAI4EEcQfGvHuUHtsz7WahlhvTT96ZOhiW98ova17C9ul+lQ8k6at78zllhx2nwq1y25EyLJEpPdRFBJOiqBxJNRKU8jSdt8kc0o48UW0kl8Dlu8G0VxWIeW5y6KgtwReHLmbn1r6jR6fycSh16+0+O1mfz8rn06ewjRxL1/n4V2pHGyVHCvX+fhWqRDJKQjr/PwrVIljywjrVqJNixD41XCKwjD40uEdjTxeNQ0NEeSPxqHEojSR/erOSKTGnksOVZNFplbiyT/AJVjJFpmu3L2mHTsWPfTh95OVvLh8K8TXYXGXGuT/U+08D1yyYVhk/xR5eq/jkayKJdTlFzodBqOh61wvJJLhvY9OeKDlxcKvvRMhw6d3uL3fd0Hd8ulS82S2+J7+pyywY6S4VS5bGf9o231hw7QKf0swykfZjPvMfMd0eZ6VvodO5z43yX6nleJ6lQhwLm/0OQ17lHzYKQwqQApACgCSsxYW4VonYDbx250UAQIFNUhB9rRxICzNiLms06ZKI8TjXjWzRaY4zeNTTKG5JhTSHZHeTWihWNE0mibHvpDZbVDgXY3GNdTRwlRFuKKGwrUyS22NvDNhu6hDJxyPqBrrl5r+HhXPl00Mu75nbpfEc2mXDF3Hs/27Gmi9oDW/wBmF/8A5NPhk/OudeGJ/wB3y/k7peOuv+P5/wAFZtXeCfFaOQqcci6L4E82Pnp4V6Gm0ePDvFb92eRqtdl1G0nt2XL+SJHHXckcDJMS1qkZslxJWqRDJcaVqkQ2SUjrVRJsdEVPhFYloqGgGJI6zaLQ3Dhg5sTYeVz5CubPPy1ZrjhxMdbZCH67/uj+NcvnyfQ28pdxptgxn67/ALo/jUPJJ9B8C7jLbtRn+kf9xf41Lcn0K4V3Gv8AwugIZZ5FYaqco0PXRr1nJWqaLg3B8UXTQxDvriIGaOVElKkrm1Umxte40PwFefk0EJbxdHtYvHM8VU0pfJ/fuDxvtExDC0SJH97V2HlfT4g1MPDoJ/idkZvGcs1UUl8zIYidpGLuxZmNyWNyT4mu+MVFUjyZScncnbG6LJBQMFSAVIAUACgA6dgFSAFAFsmoZaV7mZAiaxtXQpWUONrTsY2yeNFgIKGlYAAqkNFtu/sV8U9gcqL77dOgHUmtsGnlnlXRc2O6R0DAbDw8IssSk/aYBmPqfyrvlp8cFsjgz5Jdx7FbJgkFmiQ+IABHkRqK4M0V2PNlqcuN3GTMHvVu+2Gs6XaIm1zxU/Zbw6H+Txt9D0dHr1qPwS2l+vsM5UneTITW0NwbJ0TVvFGbZMiatYozbJ+EhzOqDTMyqL8O8QBf41blwxcn0VkJW0jQnd10B7SREIEjWYSXyRsELCynQkqRzsa5oeJQk0scXK2ltw82rrdr1v2G0tLKKfE0ub68l15Ext2pUEhYqAl9de9aMyHLp0FvOqx+LYJuCincvZtcuHffvv7CZ6LJFSbrb57XsQolr2kjgbJCx1dCsRIlJoaZFlWspItDUA1PlXna3lE6tPzZbYDbgiUhsKJL2szcso1Cm9Z6yf8AUJLHmnjpf2r+V+/pQ8WLgviipe3/AAQm2pck5GGp0FtPAa16EdfiUUnb9aMHpZt3sF/pP7j/AN3+NV/qGL1+H8i/pJ+gRxRe3dIt1t+Rrj1mqhlgoxvmbYMEscm2c721+vk/bb8a83odJFghZ2CKLsxAAHMmnGLk1GPNgdD2LujDEoMoEsnO+qDwC8/M/KvWhoYY1+Pd/Ixyya5F22AiIsYoyOmRbfC1Y5Yx7HlZcklumzObwbnIyl8OMrjXJ9VvAX90/LyrzsiSYsHiUoS4cu679jAMLaGs2z3EFSGCgAUACgAUACgC1nYI96OGzPqQZHzNcV0Qikhj1qp0JBZamyg7UhgsKq/UDXYPaIweHhAVSZUMmtwSxZABp91v7teqs39NhgkvzK/fa/b9Cp7JE/H7dliEx7ND2bogsWu2fUX06Eet6zz5pri2Wzo4pY1NpBQbyl3YBBlE0UQNzqsjOpb0yVxzlxNr1S/X6HDl0iq76N/AexeIbEPPhWjUKENiT372BR8p4rm4EcCutcU11s8/gWCMNRGW9+71V96OZVVH1Jr9z9gLiFuUaRy2VVUkaAAk93Xr4ACqi2htF9Lu5FGFLQEBgSpzuQwGhsQ1jb5VayS7i4UIGzIP93bydr/M1SyzF5cSruY2up1U6HTipuD06V2xSnGnya/U5pfhdrodFG50x7pxnvLJp9HbVZGV5NfFsp/CuWLwxdqHJrr/ANVS+C/k1ayPZy79O7t/MkYrY2LRJZGxNwgZgDCLOMhZuIsuryLr+FqnHptG3GKx9v7nty9b6J/bKllz025fJfT1ZjcXjMitI3wAAuSdBYaDWvYnOODFfblu37N3ucMYvJOu5RTbYY87+tl8h1rwcuaeV3NnoQhGG0UP4NMWTdIJW8FSUg/G4PpbzqceoeKXFFlywuapomYXGCUG2hBIYcwQSNRy4V7eDUrNG+p5+TFwMcg941z63lE20/Nl7icT/wCUgUTklZJGEWS3Zm9w3aW73G9vveFec0naZ1J07Qym1pfrYl1PhGrfMCso+H6Vrfb/AMvqTk1mpjKoRtd7iv2EptJlBy4l7klrdmNWPHUjS9XLQaV8+3/u+pEdZq7rgr3x+hGnndzmdixta5twHlSx4oY1wwVI3lNyds5ttr9fJ+2341p0My89n2EDTPIfqKAPAvcX+AI9a9PwrGpZJTfRfqXBc2anau1WhlhjCg9qcoJvoc6A+mVifSurVZnCcY1z+qObLG02V670NnCdmtzMY+J9zMFz/E2rzZZXJ1XWjjyaZNN30svNk4wzR5yADmdbD7jsv5Vx5eVnh6zGscqXZfM55vthBHimtoHAe3i1w3zBPrWEXse74TleTTK+m337ihqj0gUACgAU0AKEAdqfCBKxU+Y+FbxhRAjMBVk07C7Ss5V0KQ6GqRg7Sihiw4HGmKzY7Kwi4zDxkPlKI0JFr2s6MDx6Kvxr2cWNajBF3VLh+a+hU94ot8RsYOXJf35Y5SLcOzCjLx5240s2JW3fNp/A4ck3H4URIN2AihVlsQYmByA96IuwNr8y/wAq8+UFFJez5X9Tjy6ve2u/XuKx+E7AyYp5S2VHyqRbvuFWwN+BIFl5XNcc3HdLqcMcqzJaeMebW/onfxrqczq6Ppzfbi/q11Ze+dU94aDVdRr6ipqbVQVvsOU4QXFN0urNbiMIGFy2IYgWGZVNh0F5NBSWLWXvjXx/gyeu0X/q/Ii4vDxqmZDIdbd5FUc76hyb6dKUYahb5IJLvZp5+nk+HHO5dqMnI3eb9o16uL8q9hyz5smYLBPILpGWA4kDS/S/WulM555IQ/M0iW+EeOxeMr4kfnWikRHJCf5WmR9o4ftVjjuRmlhUkcg7hL/3q5fEH/sNnTpl/uI3mxNnYfDyII8LeNgL4l73zH3ALqSQTbUlR3ha9fNtuXNntql+VF/i9qFJVjSEyL/SOl7xE6qMuWzaEEgG4BGhuKmtg3s5dtaFVx2MdPdd42Glhd4ldj5ksbiva8L/ACN9f8nm6tfiGsOe96VvrOUTLBzZf4rE3wkCduTaSQ9l2duz197P9bje1/r+FcC5nQ20tiAsqoQ0cpzjh3LW5fWuKrLhxyhTd+lNGWHNm494cPrafyHX2rOQQZiQQQRZNQdCNFrkWjwp2o/N/U7HnyNVfyRErpMjnO2v18n7bfjR0JLz2f4sLM8Z/pF0/aS5t8C3wr0/C8ijkcH1X6FxfQ1u0tkCaRJC9jHbKLXswdXLcei29a7NThU5qTfL62cuWVERd2FD9p2hvcH3f/f7br/VrzpYoxd/fOziyalpVX3VFnsnAmFSufMuYsoy2K5mLHW+up+VcOWkqPH1uVZKdUznm+mMEuKe2oQBL9cvvf3iR6VzxVI9zwrC8emV9d/j/BRVR6IKABQAKYAoQCq0Qh/LXQZWJKUPcakBEtzrGSou7HGYUhiPG9MliCB1+RoC32LPYW1mwrll7ynR11swHDXkRrW+DPLBK1y6oLN5gd5cNKL9qEPMSd0j1Oh9DXc9VjmrTr2nJmxy6IdxW8OGjFzOh8EIcn0W9cWWcejPOnpss3Sj+xhd5N4WxRCjuxLqF5k9W8fDlXLW9nfo9EsH4nvJ/exSWHWqO632N5uMl41AUPdz3SqsDoNMrEA+tZT4OF8cml1a5ov8f9iTfRPka98GxuowqXtf/Z4AQDcA3z6ag/Cua9Gt/Pn8WNS1zdPDD4/wMbRw7KgLQKmoGYRRIeB0zIxNXhem4v8Abyyk+z5A3qv/AOuOMV3T3/QxkinO3mfxr2cUvwo5pQ35nUPZ9ArQC6q7hGKIxADtdrix4/lV5ptRjTpPm+x5McUZ6nLxLiaWyfXb79grfuFVi0VUYqhdFIIRrrpYcPzqtNKTTt2r2fcnLihj1GPhVNrdJ8tvv2mU3dxaLIEkQMrtHxuMrI4dG9GA+FZ6/C8uK0942/aevpMqhOmudI2cuALKiuEsimMSZmzGNsoZctgAWCqCbnwr51Psexw2KiweWQyRqjHvAZncdnn7MuoNjmB7NDrYix1sbAdrZj4admS3qxCJ+gVRmBWSWTm7iPINOWljx6V7HhmFqLyt89kveeZrcm/lrpuyhwTXb0ro1nJGODqaTE4m+EgTtybSSHsuzt2evvZ/rcb2+94VwpbnQ7StDMO0WQBVxLKo4Dshpz5i9TPQ6acuKT3/APt9TGOs1cVSx/8A6iA7WdgQ2JaxuLdkNVPkNL1MdBpU77f/AC+pc9ZquShe3ePw5EJrX7puOpBHyNbSST2dhjlKUblGn2uzm22f18v7bfjUIoixSlWDKbEEEEcQRwNNNp2gN/sXfGJwFn/RvwzW7jeOnu+unjXqQ18Zqp7P5GOWDa2Ls7Zw1r/SIv31v8L3rLLkg+qPLy4cj5RfwM3vBvmuUphrknQyWsB+yDqT4152SSfIeDwxylxZeXb6mFrM9oFAAoAFAAoAFAB1akgHb+NdZmD1oASaTRSDy9b/AArNoV9g1tyJ+H+dZid9RWbxNaIVehdbK3SxuKGaHDyMh4McqK37LOQCPKolJFKJNx+4O0oVzvhZCo4mMpKfPLGxNvSkpIXD6GYy34sfK3SqSFddBX8+nDr/ADaqEAt4/wA/GkFGx3SP6Dke8eIBB0HEHjSi+F2aTjxR4W2vZszQYLDvK4jjijZmJsvZp0ueOgFhWvntdF8DnekT/vl/5MkYrZkqIJDHGE7t2jVAVLDMqsV1F1IboQRrUyy8Sql8C8enUJXxSftdmXkOreZrbG9kU+ZN2ZtiWNcqtoOvLrbpXVGbSo4s+lxzyce6fpsSMTtWSUWdtPxtwv1q+PajOGlhCXHu367jAemmbUbndrazTRtmXNksrc8wI5j8a8DW6eOKf4eTPa0md5I7811JO19omCBnWMKBYAWCgFjbgKx0+FZcihZrqczhFze7OeTzliWY3JNyepNfRRSilFckeDJuTticPKA2ptXNqd0jfBzZbSbVZokhMimNGZlXu6Fr314nifjXGdIzDi8hzJIFYcD3Tx0PHSoyY45I8MuRUZOLtD77alIIM9wQQRaPUHjwFYLR4E7Ufm/qW8+Rqr+SIhmUfWHxFdNmRznacoaWQjUFiQfC5pp7EsiUgBUgCkxmi2ZuJtDEKGjwr5TwLlI7jqO0IJHlSALa+420MMhkmwrhBqWUrIFA1uxjJyjxNqQGdoAFAAoAMUDDtQOgqCRZrsk0iUhcNuZrNzGq6kuFUN+9pxqXJluEWuQJ1UDMGNjS4mRwRXNERpOjfKkpbEuKvkb32Y7qriGOJnGeNDljQjuu4sSxB4qL8OZvfhqnIaR2vDCoKLXDUAc+9sG4iTQPj4FCTxDPMF0EsQ95yB9dR3r8wCDfSrjKiZK0cGzfxHHT51qZ0F2Y/PW9FD4mWuyNsNApUAMDrbUWJsKVFudffoWC71N/uwDx4nQ8reNItK1aJL70ySG7C56kk62Av52AHoKpRCmMpJfU863TSMHGXcVE9iRWydoyd3TLnZOC7TvMbIOnFj0H8a3w43P2GWSfCX0eHhX3Yl8z3v8AmvXWsCRj5jZaYTb00Yy3V1HBXUMB5EWI+NZZdBgy818DTHqskOTF4jeOdhZckY59mtif6zEkelqnF4dp8bur9pU9XlnzZTvh4299FJ5ngfiNa6Hhi+hgskij2zs8IM6e7zB1tfgQenKuXPh4Fa5G2OfFsyohhMjZVAvqdSAAALkknQAAE1yVbpGkskYK2OybFnt7g94KO8t2JygFddR3l18aTxy7Ga1mHv8AJ/fQqdsYGSNhGVuxy2CkNmzGwtbnfS1ZTXBfEdGLLHIriWGyPZ3jZ2AcCBbgXkOupdfcGujIQb24ivE1PjGmxr8P4n6e7r7zuhgm+ZjzGfnb8q9WjC0JK/wpUFhrGT60uFsHJI6n7LN0UyLi51DM2sKnUKo/pCPtE8OgF+ekS7DR1vDVIy1w1AHHfbbuDHEn+kMMgRcwXEItgoLmyyqOV2spA5sD1oA44UPwqnFitBVI0CgYdIoOgewCK1eOXUjiVUJtS4GIMCmovuKxRU246UOO3ML6CclHAFnYMOTFsG8ZKEQ5gVJBDNJckEajUmsxidiPLLJgzJNKGbG4mNwsr5cqZnC8e8Aw5jhpW7ST5d/3IT2+BSbqbYxhmwaPiZionRyTI5zriBHlVtdQDHJoep6mlGK2++aBs7R7LpjPsqDtXMhZGVy7FiQSwIYnXh1qJ817EUjyvlXTXzq0l3JuXYVlXqadLuK5dgELpr8qKXcalLqi3h3bxDGBVTXEhjAGZFLhRcmxIy34Le1+VcU9Xgi5ty/LV7Pa/veuR0QUuFWuZCsUYq1wykqQRYgg2IPS1dUJRaTT2FuXcCxqNZWv4R6f89acZDdi7RXv2j/2Y/761WelVGThbuy5h23EsYQZ9Ba+UceZtfrXXj8QUElwfP8AgwlpeJ3xfL+Sbs7a8b2UMc3iLX8tTXTh10cs+Fqvn9DHJpnBWnZZhq7jmDvQAmZ7A0JbgMKmaKx1upB9RSyxUriOLpplLufgTiMR2YkEf6NySyh1YaKyFS6cQx+tfSvn/M4Nzuni8xcL26/DkbBt1XEcgixEJ1JCCCNQWQghNcTl1KAZiCRc660v6l1VIzegi3bk2/b7evPr029DHe0fZ74SXDzmZZGPugIFCmEqyhv00he5biSOHwyyy85NS6qjfBhWBJR7390JX2hY8RHEfoMvahLZGvmOeXhmtbvMOPIedeL/AKJpeVy+K7L09Du/qJ+hgCQeN/Hh617Gxz7gUDxoSQnZKSAAX1vamK2d7gxseEwsTsD2arAgygG2bIi8SNNResatmhgtn7dlEmz74iTRyWBd7SLJjGjAbXvAKp48q1jFbez9SGyQu1cQIcchxMy9jJBhQ3aPdT9MlZiDe9+zABPQWpJJxXu/f+AdpnR4J/pG7TvIS5OAlLMxuS8cTWJJ4nMoN6iSp/D9CkeZjbxo2DcTUjBQAKADqkAo10zJQVZDDWmhMWR3R5miXIV7gAItpR2Fs+p1X2W7Ujnw7YKZQxW5VXAIkjJzEWPEqxPoR0rOXOyzpGD2VApUiJAVcyKQo7sjaM46E8zzpObYUibhN3MICpGGiBUqVsgGUoSVK9LZmt0zHrT45Bwoqt9No4XY2Am+jxRwyzhkiSNQuZyMpkyjkgN7/sjmKVt7BsjzYrH7APLhWtvsZtLuGCfsfI0X6C2/7BOdNUt8qdrqhpb7M6LjojNjNjSQpaNo8OEAIYR9hIWlXMdTkXU3r57FJY9Pqo5PzJyt8r4lSder5Hc7coVyMfvTikfGYl40AQyvazFge8bsD943b+tavX0MJQ0+NT50vT3e7kc2WVzdOgYWTMuvEaGuhqmJO0S4ISzKotdiFF+F2IAuemtIZYbc2FJhWAexDXyst7G3EagEEXHxpgVsblSCOINxQm07QqNtgsSHUMOY+fOvpcORZIKZ5WSHBJxJQNaGZL2ZgzMzRhb50kUEjRWC5lN+Wot61yazN5MFNPk02u6umvmdOmx8cnFrmnXo+hZbo7qyYiAPI4jGq5bZnDISrBhcBSGBFteFZ6nxGEZVBX69CoaRv8zo5bvJgzBiZ4GAvHIy8OIvdDbxUqfWvJlO3aOngrYh4bsSrpKCpJRldI1kIyhwyFS66NmU3B4oNNdIbKUUhrEQ4QD9fL6YWP8A/RRbDhQzjcdCMOIIS7/pTKzSRrHayZFVVV3vxYkkjlpUb3ZdbFSH8uXLpVJi4SdCRbSqbI4R3OakOFHXNw9ox4zCCCQK7RqI5EYAhkGiNY8QQB6g+FZyVM0RrsNsLDWA+jx2AVR3RoqNnUDybUdDT8yQcKLTD7Bwt2P0eO7SLMxyjWVSSsh++CSc3HU0lJoKRkPbBt6DAbO+gYcLHJOLCNAAI4C15Gy8FDEFQOd2twpNtjo880gBQAKABQAKAHniI5V2NJkWIK1nRQ7HGfkadGcpB5Db3gOJ40pJ9A4lfIMA8z/epoTrovkHhXkjZZEfI66qwaxHiCKlxbK40dH2F7WJo1C4iFJbaZ0bs2I6lbFSb9MvlUeWx8foWmP9szAWw+EGa2jSyXUH9lQL/vCjy2LzEcw27tXE4yUzYiTO7aakAKo4KqjRV46DxPE01GSWwccSuCG3Hn8TVJSByVizE3UaeNFSJ4o9gmiY2v8AjRTfManFcgLC32gOI40cA/MQ4mEbqPjVEeauxNwERU6nj+NTIqM1ZPakaD+M2jLKFEkjOE0XMb2v+PAamgZFoAu93cVa6E+I/OvT8Ny1J4313OPVQ2UjQLJXsUcRpN3dtwwwkSyhbFjbvE2PQBfzr57xPRZsufixxvZdj1tHqMcMVSfVl7u9vfhXzqsyAg3yN3GA4liGte9xqL156wTxNxmbTyQnTiYPbWDwu1No4qRXbIiwLmjK2d8rh2uQbjuqL/dNarZGdJlRvBujBAilXluzqguUIBa4BICjS/jQDRz/ABh0FUSiFUFApDHsPLY+FUnexLROBpiH8JtCSBxJE5RxwYePEEHQjwOlIZv9l+1t0UDEYYOftRPlv/UYH8ajhGK2r7apSpXDYZYzyeVs5HiEAAv5kjwo4RnLdp4+SeRpZnaSRzdmY3JP5ACwA4AAChgRKkAUACgAUACgDRlAa0sRCxsCgcga0g2RJkKPTW4/nlWgpW+gJFv9ZdKiYouujEdkPtj51nXqVxPsEI9L5h+dHD6j4t6oDIB9a/lRwruCk30DEa/a+VHDHuLil2EmMad4fwpOK7jUn2CK+Ioca6jv0D7P7wo4V3QuL0D7MfaFPgXcOJ9h/CwX+sLVVUhOXoWuytniWaOLOEDsFzHULfna4v5XFKwW5vB7MI//AFJP7Ef41Ky+Eln2eR/8dF/Yj/GosdBf6u4/+Oi/sR/jUWFA/wBXcf8Ax0X9iP8AGp2FErAblCFs0e0ERrEZliANja4/XeAo4golT7sM+r7TDEaC8QP/AFquObJH8ra95LxxfNDa7mp9bHof/rUf9WurBr5474rlfr/DMsmnUqrb3FbjvZvFI5b/AEggvbTslPAAce28K5s2XzJudVZpGHCqLLdvdBcGXK4+N8+W94gLZc1v6b7xrKy0qJe393/pMeT6eketyRECSLEEfrha96QM4/vnsgYSbsRMJgFVs6jL71+6VzNYi3XmKpO0TW5nqgYKQwUASsLNyNWnZLJZUGkAxOlAyK5tSbAaqBgoAFAAoAFAAoA//9k=" 
+                         alt="Internet Programming">
+                    <div class="book-info">
+                        <h3>Internet Programming</h3>
+                        <p class="author">By Ashenafi Lakew</p>
+                        <p class="category">Computer Science</p>
+                        <span class="availability limited">2 Left</span>
+                    </div>
+                </div>
+                
+                <!-- Book Card 6 - Software Engineering Chapter 3 -->
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=SWE+Chapter+3" 
+                         alt="Software Engineering Chapter 3">
+                    <div class="book-info">
+                        <h3>Software Engineering - Chapter 3</h3>
+                        <p class="author">Computer Science Department</p>
+                        <p class="category">Course Material</p>
+                        <span class="file-format ppt">PPT</span>
+                        <span class="availability available">Free Download</span>
+                    </div>
+                </div>
+                <!-- Book Card 2 -->
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/300x200/2c3e50/ffffff?text=Database+Systems" 
+                         alt="Internet Programming">
+                    <div class="book-info">
+                        <h3>Internet Programming</h3>
+                        <p class="author">By Ashenafi Lakew</p>
+                        <p class="category">Computer Science</p>
+                        <span class="availability limited">2 Left</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        
+                    </div>
+                    <h3>1. Register <i class="fas fa-user-plus"></i></h3>
+                    <p>Create your account using university credentials</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                    </div>
+                    <h3>2. Search <i class="fas fa-search"></i></h3>
+                    <p>Find books using advanced search filters</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                    </div>
+                    <h3>3. Borrow <i class="fas fa-book"></i></h3>
+                    <p>Issue books online or download digital copies</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        
+                    </div>
+                    <h3>4. Rate & Review <i class="fas fa-star"></i></h3>
+                    <p>Share your feedback on books</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-university"></i> Admas University</h3>
+                    <p>Digital Library Management System</p>
+                    <p>Software Engineering Project</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-laptop-code"></i> creater </h3>
+                    <p><i class="fas fa-user"></i> Ashenafi Lakew</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> Quick Links</h3>
+                    <p><a href="index.html"><i class="fas fa-home"></i> Home</a></p>
+                    <p><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></p>
+                    <p><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></p>
+                    <p><a href="dashboard.html"><i class="fas fa-search"></i> Browse All Books</a></p>//when u create books.html u will change the link
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</p>
+                    <p><i class="fas fa-phone"></i> +251 97 821 7070</p>
+                    <p><i class="fas fa-envelope"></i> ashenafilakew721@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Admas University. Library Management System Project. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <section class="team-section">
+    <div class="container">
+    <div class="member-photo">
+    <!-- Replace placeholder with your photo -->
+    <img src="images/team/ashenafi.jpg" alt="Ashenafi Lakew"
+    class="logo-img"
+    onerror="this.onerror=null; this.src='images/logo.png';"
+    width="50"
+    height="50"></div>
+        <div class="member-info">
+        <h3 style="color: #4facfe;">Ashenafi Lakew <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i></h3>
+        <p class="member-role">Project Architect & Documentation</p>
+        <p class="member-description">
+            Designed system architecture, managed project structure, and created 
+            comprehensive documentation. Ensured adherence to software engineering 
+            principles and project requirements.
+        </p>
+        <div class="member-skills">
+            <span class="skill-tag">full-stack Developer</span>
+            <span class="skill-tag">System Design</span>
+            <span class="skill-tag">Documentation</span>
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Quality Assurance</span>
+        </div>
+        <p style="margin-top: 10px; font-size: 0.9em; color: #3498db;">
+            <i class="fas fa-mouse-pointer"></i> Click for more details<br><br><hr><br>
+        </p>
+    </div>       
+</div>
+</section>
+    <!-- JavaScript -->
+      <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        // ========== LOAD BOOKS FROM STORAGE FUNCTION ==========
+        function loadBooksFromStorage() {
+            console.log('Loading books from localStorage...');
+            
+            // Get the books grid container
+            const booksGrid = document.querySelector('.books-grid');
+            if (!booksGrid) return;
+            
+            // Try to load books from localStorage
+            let books = [];
+            try {
+                // First try homepageBooks (which should contain latest books)
+                books = JSON.parse(localStorage.getItem('homepageBooks') || '[]');
+                console.log('Loaded homepage books:', books.length);
+                
+                // If no homepage books, try libraryBooks
+                if (books.length === 0) {
+                    books = JSON.parse(localStorage.getItem('libraryBooks') || '[]');
+                    console.log('Loaded library books:', books.length);
+                }
+            } catch (error) {
+                console.error('Error loading books from localStorage:', error);
+                books = [];
+            }
+            
+            // If we have books from localStorage, display them
+            if (books.length > 0) {
+                // Keep existing demo books but add a header
+                const existingBooks = document.querySelectorAll('.book-card');
+                if (existingBooks.length > 0) {
+                    const header = document.createElement('h3');
+                    header.textContent = 'Recently Added Books';
+                    header.style.color = '#2c3e50';
+                    header.style.marginTop = '40px';
+                    header.style.marginBottom = '20px';
+                    header.style.fontSize = '1.5rem';
+                    header.style.borderBottom = '2px solid #3498db';
+                    header.style.paddingBottom = '10px';
+                    booksGrid.parentNode.insertBefore(header, booksGrid.nextSibling);
+                }
+                
+                // Create a new grid for added books
+                const addedBooksGrid = document.createElement('div');
+                addedBooksGrid.className = 'books-grid';
+                addedBooksGrid.style.marginTop = '20px';
+                addedBooksGrid.style.marginBottom = '40px';
+                
+                // Add loaded books (show only first 8)
+                const booksToShow = books.slice(0, 8);
+                booksToShow.forEach((book, index) => {
+                    const bookCard = createBookCard(book);
+                    addedBooksGrid.appendChild(bookCard);
+                });
+                
+                // Insert after the main grid
+                booksGrid.parentNode.insertBefore(addedBooksGrid, booksGrid.nextSibling);
+                
+                // Show "View All" button if there are more books
+                if (books.length > 8) {
+                    const viewAllBtn = document.createElement('div');
+                    viewAllBtn.style.textAlign = 'center';
+                    viewAllBtn.style.marginTop = '20px';
+                    viewAllBtn.innerHTML = `
+                        <button onclick="alert('Viewing all ${books.length} books')" 
+                                style="padding: 10px 25px; background: #3498db; color: white; border: none; 
+                                       border-radius: 5px; cursor: pointer; font-weight: 500;">
+                            <i class="fas fa-eye"></i> View All ${books.length} Books
+                        </button>
+                    `;
+                    addedBooksGrid.parentNode.insertBefore(viewAllBtn, addedBooksGrid.nextSibling);
+                }
+            }
+        }
+        
+        // ========== CREATE BOOK CARD FUNCTION ==========
+        function createBookCard(book) {
+            const card = document.createElement('div');
+            card.className = 'book-card';
+            
+            // Create cover image or placeholder
+            let coverHTML;
+            if (book.coverImage) {
+                coverHTML = `<img src="${book.coverImage}" alt="${book.title}" 
+                               onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/2c3e50/ffffff?text='+encodeURIComponent('${book.title.substring(0, 15)}');">`;
+            } else {
+                // Use category-based colors for placeholder
+                const colors = {
+                    'computer-science': '#3498db',
+                    'engineering': '#2c3e50',
+                    'mathematics': '#1abc9c',
+                    'business': '#e74c3c',
+                    'science': '#9b59b6',
+                    'literature': '#f39c12',
+                    'history': '#95a5a6',
+                    'art': '#d35400'
+                };
+                const color = colors[book.category] || '#2c3e50';
+                coverHTML = `<div style="width:100%; height:100%; background: linear-gradient(135deg, ${color} 0%, ${color}99 100%); 
+                              display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                              <i class="fas fa-book"></i>
+                            </div>`;
+            }
+            
+            // Check availability
+            const isAvailable = book.status === 'available' || book.availableCopies > 0;
+            let availabilityHTML = '';
+            
+            if (book.copies > 1) {
+                const availableCount = book.availableCopies || book.copies;
+                if (availableCount === 0) {
+                    availabilityHTML = `<span class="availability unavailable">Checked Out</span>`;
+                } else if (availableCount < book.copies) {
+                    availabilityHTML = `<span class="availability limited">${availableCount} Left</span>`;
+                } else {
+                    availabilityHTML = `<span class="availability available">Available</span>`;
+                }
+            } else {
+                availabilityHTML = `<span class="availability ${isAvailable ? 'available' : 'unavailable'}">
+                    ${isAvailable ? 'Available' : 'Checked Out'}
+                </span>`;
+            }
+            
+            // Create the card HTML
+            card.innerHTML = `
+                <div class="book-cover">
+                    ${coverHTML}
+                </div>
+                <div class="book-info">
+                    <h3>${book.title}</h3>
+                    <p class="author">By ${book.author}</p>
+                    <p class="category">${book.categoryDisplay || book.category || 'General'}</p>
+                    ${book.year ? `<p class="year">${book.year}</p>` : ''}
+                    ${availabilityHTML}
+                    <button class="borrow-btn" onclick="borrowBook('${book.id}')" ${!isAvailable ? 'disabled' : ''}>
+                        <i class="fas fa-book-open"></i> Borrow
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // ========== BORROW BOOK FUNCTION ==========
+        function borrowBook(bookId) {
+            if (confirm('Would you like to borrow this book?\n\nYou will be redirected to the login page.')) {
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // ========== SEARCH FUNCTION ==========
+        function searchBooks() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                alert(`Searching for: "${query}"\n\nIn a real system, this would redirect to search results.`);
+                
+                // Highlight matching books (simple demo)
+                const bookCards = document.querySelectorAll('.book-card');
+                bookCards.forEach(card => {
+                    const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                    const author = card.querySelector('.author')?.textContent.toLowerCase() || '';
+                    if (title.includes(query.toLowerCase()) || author.includes(query.toLowerCase())) {
+                        card.style.boxShadow = '0 0 20px rgba(52, 152, 219, 0.5)';
+                        setTimeout(() => {
+                            card.style.boxShadow = '';
+                        }, 2000);
+                    }
+                });
+            } else {
+                alert('Please enter a search term');
+            }
+        }
+        
+        // ========== INITIALIZE PAGE ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Admas Digital Library loaded successfully');
+            
+            // 1. Load books from localStorage
+            loadBooksFromStorage();
+            
+            // 2. Add click functionality to book cards
+            document.querySelectorAll('.book-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('a') && !e.target.closest('button')) {
+                        const title = this.querySelector('h3').textContent;
+                        alert(`Selected: ${title}\n\nClick "Borrow" to request this book.`);
+                    }
+                });
+            });
+            
+            // 3. Add enter key support for search
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchBooks();
+                    }
+                });
+            }
+            
+            // 4. Add refresh button for testing (remove in production)
+            const refreshBtn = document.createElement('button');
+            refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Books';
+            refreshBtn.style.position = 'fixed';
+            refreshBtn.style.bottom = '20px';
+            refreshBtn.style.right = '20px';
+            refreshBtn.style.padding = '10px 15px';
+            refreshBtn.style.background = '#3498db';
+            refreshBtn.style.color = 'white';
+            refreshBtn.style.border = 'none';
+            refreshBtn.style.borderRadius = '5px';
+            refreshBtn.style.cursor = 'pointer';
+            refreshBtn.style.zIndex = '1000';
+            refreshBtn.style.fontSize = '0.9rem';
+            refreshBtn.onclick = function() {
+                loadBooksFromStorage();
+                alert('Books refreshed from storage!');
+            };
+            document.body.appendChild(refreshBtn);
+        });
+        
+    </script>
+</body>
+</html>
